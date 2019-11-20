@@ -1,4 +1,5 @@
 
+
 import random
 from datetime import datetime
 from datetime import timedelta
@@ -294,6 +295,15 @@ def generate_Customer(count):
 
 
 
+def write_csv(filename, columns, entries_list):
+    with open(filename, 'w', encoding='utf-8') as file:
+        file.write(','.join(columns) + '\n')
+        for element in entries_list:
+            string = ''
+            for column in columns:
+                string += element['fields'][column] + ','
+            string = string.strip(',')
+            file.write(string + '\n')
 
 ############################################################################################################################################
 
@@ -350,77 +360,13 @@ if __name__ == "__main__":
 
 
 
+    write_csv('Customers.csv', ['CustomerIDPrefix','CustomerIDNum','Name','CreditCardNum','SecCode','ExpDate'], customers)
+    write_csv('Bookings.csv', ['BookingIDPrefix','BookingIDNum','CustomerIDPrefix','CustomerIDNum','RoomIDPrefix','RoomIDNum','CheckIn','Paid','CheckOut','Guests'], bookings)
+    write_csv('Rooms.csv', ['RoomIDPrefix','RoomIDNum','TypeID','Floor','Occupied','CleanedDate','CleanedTime'], rooms)
+    write_csv('RoomClasses.csv', ['TypeIDPrefix','TypeIDNum','Bed','Bathroom','Amenities','Price'], roomclasses)
+    write_csv('Inventory.csv', ['ItemIDPrefix','ItemIDNum','ItemDescription','Quantity'], inventory_items)
+    write_csv('PayStubs.csv', ['StubIDPrefix','StubIDNum','StaffIDPrefix','StaffIDNum','Payment','Date'], paystubs)
+    write_csv('Staff.csv', ['StaffIDPrefix','StaffIDNum','FirstName','LastName','ShiftStart','ShiftEnd','PayRate'], staff)
+    write_csv('TransactionLog.csv', ['TransactionIDPrefix','TransactionIDNum','ItemIDPrefix','ItemIDNum','Quantity','UnitPrice','TotalCost','PurchaseDate'], transactions)
 
-    with open('Customers.csv', 'w', encoding='utf-8') as file:
-        columns = ['CustomerIDPrefix','CustomerIDNum','Name','CreditCardNum','SecCode','ExpDate']
-        file.write(','.join(columns) + '\n')
-        for element in customers:
-            string = ''
-            for column in columns:
-                string += element['fields'][column] + ','
-            string = string.strip(',')
-            file.write(string + '\n')
-    with open('Bookings.csv', 'w', encoding='utf-8') as file:
-        columns = ['BookingIDPrefix','BookingIDNum','CustomerIDPrefix','CustomerIDNum','RoomIDPrefix','RoomIDNum','CheckIn','Paid','CheckOut','Guests']
-        file.write(','.join(columns) + '\n')
-        for element in bookings:
-            string = ''
-            for column in columns:
-                string += element['fields'][column] + ','
-            string = string.strip(',')
-            file.write(string + '\n')
-    with open('Rooms.csv', 'w', encoding='utf-8') as file:
-        columns = ['RoomIDPrefix','RoomIDNum','TypeID','Floor','Occupied','CleanedDate','CleanedTime']
-        file.write(','.join(columns) + '\n')
-        for element in rooms:
-            string = ''
-            for column in columns:
-                string += element['fields'][column] + ','
-            string = string.strip(',')
-            file.write(string + '\n')
-    with open('RoomClasses.csv', 'w', encoding='utf-8') as file:
-        columns = ['TypeIDPrefix','TypeIDNum','Bed','Bathroom','Amenities','Price']
-        file.write(','.join(columns) + '\n')
-        for element in roomclasses:
-            string = ''
-            for column in columns:
-                string += element['fields'][column] + ','
-            string = string.strip(',')
-            file.write(string + '\n')
-    with open('Inventory.csv', 'w', encoding='utf-8') as file:
-        columns = ['ItemIDPrefix','ItemIDNum','ItemDescription','Quantity']
-        file.write(','.join(columns) + '\n')
-        for element in inventory_items:
-            string = ''
-            for column in columns:
-                string += element['fields'][column] + ','
-            string = string.strip(',')
-            file.write(string + '\n')
-    with open('PayStubs.csv', 'w', encoding='utf-8') as file:
-        columns = ['StubIDPrefix','StubIDNum','StaffIDPrefix','StaffIDNum','Payment','Date']
-        file.write(','.join(columns) + '\n')
-        for element in paystubs:
-            string = ''
-            for column in columns:
-                string += element['fields'][column] + ','
-            string = string.strip(',')
-            file.write(string + '\n')
-    with open('Staff.csv', 'w', encoding='utf-8') as file:
-        columns = ['StaffIDPrefix','StaffIDNum','FirstName','LastName','ShiftStart','ShiftEnd','PayRate']
-        file.write(','.join(columns) + '\n')
-        for element in staff:
-            string = ''
-            for column in columns:
-                string += element['fields'][column] + ','
-            string = string.strip(',')
-            file.write(string + '\n')
-    with open('TransactionLog.csv', 'w', encoding='utf-8') as file:
-        columns = ['TransactionIDPrefix','TransactionIDNum','ItemIDPrefix','ItemIDNum','Quantity','UnitPrice','TotalCost','PurchaseDate']
-        file.write(','.join(columns) + '\n')
-        for element in transactions:
-            string = ''
-            for column in columns:
-                string += element['fields'][column] + ','
-            string = string.strip(',')
-            file.write(string + '\n')
-    
+        
