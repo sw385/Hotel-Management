@@ -347,6 +347,29 @@ if __name__ == "__main__":
                 collision = True
         if collision == False:
             bookings.append(booking2)
+    for room in rooms:
+        room_bookings = [f for f in bookings if f['fields']['RoomIDNum'] == room['fields']['RoomIDNum']]
+        if len(room_bookings) == 0:
+            # make the clean date a couple of days ago, between 0 and 5 days ago
+            room['fields']['CleanedDate'] = datetime.strftime(datetime.today() - timedelta(days=random.randint(0, 5)), '%Y-%m-%d')
+            room['fields']['CleanedTime'] = str(random.randint(11, 15)).zfill(2) + ':' + str(random.randint(0, 59)).zfill(2) + ':' + str(random.randint(0, 59)).zfill(2)
+        else:
+            room_bookings = sorted(room_bookings, key=lambda x: x['fields']['CheckIn'], reverse=True)
+            for room_booking in room_bookings:
+                room_checkin = datetime.strptime(room_booking['fields']['CheckIn'], '%Y-%m-%d')
+                room_checkout = datetime.strptime(room_booking['fields']['CheckOut'], '%Y-%m-%d')
+                # if the room is currently booked, then the clean date is thecheck in date
+                if room_checkin <= datetime.today() and room_checkout > datetime.today():
+                    room['fields']['CleanedDate'] = room_booking['fields']['CheckIn']
+                    room['fields']['CleanedTime'] = str(random.randint(11, 15)).zfill(2) + ':' + str(random.randint(0, 59)).zfill(2) + ':' + str(random.randint(0, 59)).zfill(2)
+                # if not currently booked, then the clean date is the last checkout date or a couple of days ago, whichever is later
+                elif room_checkout <= datetime.today():
+                    room['fields']['CleanedDate'] = datetime.strftime(datetime.today() - timedelta(days=random.randint(0, 5)), '%Y-%m-%d')
+                    room['fields']['CleanedTime'] = str(random.randint(11, 15)).zfill(2) + ':' + str(random.randint(0, 59)).zfill(2) + ':' + str(random.randint(0, 59)).zfill(2)
+                if room['fields']['CleanedDate'] != 'NULL':
+                    break
+
+
     for x in range(num_of_inventory_items):
         inventory_items.append(generate_InventoryItem(len(inventory_items)))
     for x in range(num_of_transactions):
