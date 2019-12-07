@@ -351,6 +351,11 @@ if __name__ == "__main__":
         inventory_items.append(generate_InventoryItem(len(inventory_items)))
     for x in range(num_of_transactions):
         transactions.append(generate_Transaction(len(transactions), random.choice(inventory_items)['fields']['ItemIDNum']))
+    for n, element in enumerate(transactions):
+        start = datetime.strptime('2019-01-01', '%Y-%m-%d')
+        end = datetime.today()
+        duration = end - start
+        transactions[n]['fields']['PurchaseDate'] = datetime.strftime(start + timedelta(days=int(float(n) / len(transactions) * duration.days)), '%Y-%m-%d')
     for employee in staff:
         start = datetime.strptime('2018-01-06', '%Y-%m-%d') + timedelta(days=14*random.randint(0, 20))
         for x in range(num_of_paystubs):
