@@ -360,13 +360,13 @@ if __name__ == "__main__":
 
 
 
-    write_csv('Customers.csv', ['CustomerIDPrefix','CustomerIDNum','Name','CreditCardNum','SecCode','ExpDate'], customers)
-    write_csv('Bookings.csv', ['BookingIDPrefix','BookingIDNum','CustomerIDPrefix','CustomerIDNum','RoomIDPrefix','RoomIDNum','CheckIn','Paid','CheckOut','Guests'], bookings)
-    write_csv('Rooms.csv', ['RoomIDPrefix','RoomIDNum','TypeID','Floor','Occupied','CleanedDate','CleanedTime'], rooms)
-    write_csv('RoomClasses.csv', ['TypeIDPrefix','TypeIDNum','Bed','Bathroom','Amenities','Price'], roomclasses)
-    write_csv('Inventory.csv', ['ItemIDPrefix','ItemIDNum','ItemDescription','Quantity'], inventory_items)
-    write_csv('PayStubs.csv', ['StubIDPrefix','StubIDNum','StaffIDPrefix','StaffIDNum','Payment','Date'], paystubs)
-    write_csv('Staff.csv', ['StaffIDPrefix','StaffIDNum','FirstName','LastName','ShiftStart','ShiftEnd','PayRate'], staff)
-    write_csv('TransactionLog.csv', ['TransactionIDPrefix','TransactionIDNum','ItemIDPrefix','ItemIDNum','Quantity','UnitPrice','TotalCost','PurchaseDate'], transactions)
+    write_csv('Customers.csv', ['CustomerIDNum','Name','CreditCardNum','SecCode','ExpDate'], customers)
+    write_csv('Bookings.csv', ['BookingIDNum','CustomerIDNum','RoomIDNum','CheckIn','Paid','CheckOut','Guests'], bookings)
+    write_csv('Rooms.csv', ['RoomIDNum','TypeID','Floor','Occupied','CleanedDate','CleanedTime'], rooms)
+    write_csv('RoomClasses.csv', ['TypeIDNum','Bed','Bathroom','Amenities','Price'], roomclasses)
+    write_csv('Inventory.csv', ['ItemIDNum','ItemDescription','Quantity'], inventory_items)
+    write_csv('PayStubs.csv', ['StubIDNum','StaffIDNum','Payment','Date'], paystubs)
+    write_csv('Staff.csv', ['StaffIDNum','FirstName','LastName','ShiftStart','ShiftEnd','PayRate'], staff)
+    write_csv('TransactionLog.csv', ['TransactionIDNum','ItemIDNum','Quantity','UnitPrice','TotalCost','PurchaseDate'], transactions)
 
         
