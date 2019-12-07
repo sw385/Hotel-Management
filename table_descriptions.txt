@@ -1,0 +1,112 @@
+mysql> desc Staff;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| StaffIDPrefix | char(1)     | NO   | PRI | NULL    |                |
+| StaffIDNum    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| FirstName     | varchar(20) | YES  |     | NULL    |                |
+| LastName      | varchar(20) | YES  |     | NULL    |                |
+| ShiftStart    | time        | YES  |     | NULL    |                |
+| ShiftEnd      | time        | YES  |     | NULL    |                |
+| PayRate       | float       | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+
+mysql> desc Rooms;
++--------------+------------+------+-----+---------+----------------+
+| Field        | Type       | Null | Key | Default | Extra          |
++--------------+------------+------+-----+---------+----------------+
+| RoomIDPrefix | char(1)    | NO   | PRI | NULL    |                |
+| RoomIDNum    | int(11)    | NO   | PRI | NULL    | auto_increment |
+| TypeID       | varchar(5) | YES  |     | NULL    |                |
+| Floor        | int(11)    | YES  |     | NULL    |                |
+| Occupied     | tinyint(1) | YES  |     | NULL    |                |
+| CleanedDate  | date       | YES  |     | NULL    |                |
+| CleanedTime  | time       | YES  |     | NULL    |                |
++--------------+------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> desc TransactionLog;
++---------------------+---------+------+-----+---------+----------------+
+| Field               | Type    | Null | Key | Default | Extra          |
++---------------------+---------+------+-----+---------+----------------+
+| TransactionIDPrefix | char(1) | NO   | PRI | NULL    |                |
+| TransactionIDNum    | int(11) | NO   | PRI | NULL    | auto_increment |
+| ItemIDPrefix        | char(1) | YES  |     | NULL    |                |
+| ItemIDNum           | int(11) | YES  |     | NULL    |                |
+| Quantity            | int(11) | YES  |     | NULL    |                |
+| UnitPrice           | float   | YES  |     | NULL    |                |
+| TotalCost           | float   | YES  |     | NULL    |                |
+| PurchaseDate        | date    | YES  |     | NULL    |                |
++---------------------+---------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+
+mysql> desc Customers;
++------------------+-------------+------+-----+---------+----------------+
+| Field            | Type        | Null | Key | Default | Extra          |
++------------------+-------------+------+-----+---------+----------------+
+| CustomerIDPrefix | char(1)     | NO   | PRI | NULL    |                |
+| CustomerIDNum    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| Name             | varchar(50) | YES  |     | NULL    |                |
+| CreditCardNum    | varchar(16) | YES  |     | NULL    |                |
+| SecCode          | varchar(4)  | YES  |     | NULL    |                |
+| ExpDate          | date        | YES  |     | NULL    |                |
++------------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.01 sec)
+
+
+mysql> desc Inventory;
++-----------------+-------------+------+-----+---------+----------------+
+| Field           | Type        | Null | Key | Default | Extra          |
++-----------------+-------------+------+-----+---------+----------------+
+| ItemIDPrefix    | char(1)     | NO   | PRI | NULL    |                |
+| ItemIDNum       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| ItemDescription | varchar(50) | YES  |     | NULL    |                |
+| Quantity        | int(11)     | YES  |     | NULL    |                |
++-----------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc PayStubs;
++---------------+---------+------+-----+---------+----------------+
+| Field         | Type    | Null | Key | Default | Extra          |
++---------------+---------+------+-----+---------+----------------+
+| StubIDPrefix  | char(1) | NO   | PRI | NULL    |                |
+| StubIDNum     | int(11) | NO   | PRI | NULL    | auto_increment |
+| StaffIDPrefix | char(1) | YES  |     | NULL    |                |
+| StaffIDNum    | int(11) | YES  |     | NULL    |                |
+| Payment       | float   | YES  |     | NULL    |                |
+| Date          | date    | YES  |     | NULL    |                |
++---------------+---------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> desc RoomClasses;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| TypeIDPrefix | char(1)     | NO   | PRI | NULL    |                |
+| TypeIDNum    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| Bed          | int(11)     | YES  |     | NULL    |                |
+| Bathroom     | int(11)     | YES  |     | NULL    |                |
+| Amenities    | varchar(50) | YES  |     | NULL    |                |
+| Price        | float       | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> desc Bookings;
++------------------+------------+------+-----+---------+----------------+
+| Field            | Type       | Null | Key | Default | Extra          |
++------------------+------------+------+-----+---------+----------------+
+| BookingIDPrefix  | char(1)    | NO   | PRI | NULL    |                |
+| BookingIDNum     | int(11)    | NO   | PRI | NULL    | auto_increment |
+| CustomerIDPrefix | char(1)    | YES  |     | NULL    |                |
+| CustomerIDNum    | int(11)    | YES  |     | NULL    |                |
+| RoomIDPrefix     | char(1)    | YES  |     | NULL    |                |
+| RoomIDNum        | int(11)    | YES  |     | NULL    |                |
+| CheckIn          | date       | YES  |     | NULL    |                |
+| Paid             | tinyint(1) | YES  |     | NULL    |                |
+| CheckOut         | date       | YES  |     | NULL    |                |
+| Guests           | int(11)    | YES  |     | NULL    |                |
++------------------+------------+------+-----+---------+----------------+
+10 rows in set (0.00 sec)
