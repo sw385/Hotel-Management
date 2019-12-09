@@ -389,8 +389,8 @@ if __name__ == "__main__":
 
 
     write_csv('Customers.csv', ['CustomerIDNum','Name','CreditCardNum','SecCode','ExpDate'], customers)
-    write_csv('Bookings.csv', ['BookingIDNum','CustomerIDNum','RoomIDNum','CheckIn','Paid','CheckOut','Guests'], bookings)
-    write_csv('Rooms.csv', ['RoomIDNum','TypeID','Floor','Occupied','CleanedDate','CleanedTime'], rooms)
+    write_csv('Bookings.csv', ['BookingIDNum','CustomerIDNum','RoomIDNum','CheckIn','CheckOut','Guests'], bookings)
+    write_csv('Rooms.csv', ['RoomIDNum','TypeID','Floor'], rooms)
     write_csv('RoomClasses.csv', ['TypeIDNum','Bed','Bathroom','Amenities','Price'], roomclasses)
     write_csv('Inventory.csv', ['ItemIDNum','ItemDescription','Quantity'], inventory_items)
     write_csv('PayStubs.csv', ['StubIDNum','StaffIDNum','Payment','Date'], paystubs)
