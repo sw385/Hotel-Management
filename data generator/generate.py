@@ -47,8 +47,12 @@ def generate_credit_card():
 def generate_sec_code():
     '''Generates a string of 3 numbers.'''
     number = ''
-    for x in range(3):
-        number += str(random.randint(0, 9))
+    if random.randint(0, 10) <= 2:
+        for x in range(4):
+            number += str(random.randint(0, 9))
+    else:
+        for x in range(3):
+            number += str(random.randint(0, 9))
     return number
 
 def generate_exp_date():
