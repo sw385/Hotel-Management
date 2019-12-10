@@ -154,10 +154,16 @@ def generate_RoomClass(count):
     
     fields['TypeIDPrefix'] = 'L'
     fields['TypeIDNum'] = str(count + 1)
-    fields['Bed'] = str(random.randint(1, 4))
-    fields['Bathroom'] = str(random.randint(1, 2))
+    # fields['Bed'] = str(random.randint(1, 4))
+    fields['Bed'] = random.choice(['1 Twin', '2 Twin', '3 Twin', '1 Queen', '2 Queen', '1 King'])
+    # fields['Bathroom'] = str(random.randint(1, 2))
+    fields['Bathroom'] = random.choice(['Shower', 'Shower + Tub', 'Shower + Jacuzzi'])
     fields['Amenities'] = '<amenities go here>'
-    fields['Price'] = str(int(fields['Bed']) * random.randint(10, 30)) + random.choice(['.00', '.50', '.99', '.95'])
+    # fields['Price'] = str(int(fields['Bed']) * random.randint(10, 30)) + random.choice(['.00', '.50', '.99', '.95'])
+    beds = ['Twin', 'Queen', 'King']
+    bed_prices = [1, 1.579, 2]
+    fields['Price'] = str(int(int(fields['Bed'].split(' ')[0]) * bed_prices[beds.index(fields['Bed'].split(' ')[1])] * random.randint(15, 25))) + random.choice(['.00', '.50', '.99', '.95'])
+    # print(fields['Bed'], fields['Price'])
     
     # for key in fields:
         # print(key + ':    ', fields[key])
